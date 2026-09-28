@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>TripSplit Dashboard</title>
+
+	<link rel="stylesheet" href="style.css?v=3">
+
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <span>TS</span>
+            <h2>TripSplit</h2>
+        </div>
+
+        <p class="menu-title">MENU</p>
+
+		<nav>
+		    <a href="#" class="sidebar-link active" data-page="dashboard">
+		        <span>⌂</span>
+		        Dashboard
+		    </a>
+
+		    <a href="#" class="sidebar-link" data-page="trips">
+		        <span>✈</span>
+		        Trips
+		    </a>
+
+		    <a href="#" class="sidebar-link" data-page="participants">
+		        <span>👥</span>
+		        Participants
+		    </a>
+
+		    <a href="#" class="sidebar-link" data-page="expenses">
+		        <span>₹</span>
+		        Expenses
+		    </a>
+
+		    <a href="#" class="sidebar-link" data-page="settlements">
+		        <span>↔</span>
+		        Settlements
+		    </a>
+		</nav>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+	<main class="main-content">
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+                <h1>Dashboard</h1>
+                <p>Manage your trips and shared expenses</p>
+            </div>
+			
+			<div class="trip-selector">
+			    <label for="selectedTrip">Select Trip</label>
+
+			    <select id="selectedTrip">
+			        <option value="">Select a trip</option>
+			    </select>
+			</div>
+
+            <button class="add-trip-btn">
+                + Add Trip
+            </button>
+
+        </header>
+
+
+        <!-- WELCOME -->
+
+        <section class="welcome">
+
+            <div>
+
+                <h2>Welcome to TripSplit</h2>
+
+                <p>
+                    Track group expenses and settle payments easily.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- STAT CARDS -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">✈</div>
+
+                <div>
+                    <p>Total Trips</p>
+                    <h2 id="totalTrips">0</h2>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">₹</div>
+
+                <div>
+                    <p>Total Expenses</p>
+                    <h2 id="totalExpenses">₹0</h2>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">👥</div>
+
+                <div>
+                    <p>Participants</p>
+                    <h2 id="totalParticipants">0</h2>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">↔</div>
+
+                <div>
+                    <p>Settlements</p>
+                    <h2 id="totalSettlements">0</h2>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TRIPS -->
+
+		<section class="content-section" id="trips">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>Your Trips</h2>
+
+                    <p>
+                        Your recent group trips
+                    </p>
+
+                </div>
+
+                <button class="small-btn">
+                    View All
+                </button>
+
+            </div>
+
+
+            <div id="tripList" class="trip-grid">
+
+                <!-- Trips will come from database -->
+
+            </div>
+
+        </section>
+		
+
+
+
+
+		
+		<!-- BALANCES -->
+
+		<section class="content-section">
+
+		    <div class="section-header">
+
+		        <div>
+		            <h2>Trip Balances</h2>
+		            <p>See who should receive or pay</p>
+		        </div>
+
+		    </div>
+
+		    <div id="balanceList" class="balance-list">
+
+		        <!-- Balances will come from backend -->
+
+		    </div>
+
+		</section>
+		
+		<!-- SETTLEMENTS -->
+
+		<section class="content-section" id="settlements">
+
+		    <div class="section-header">
+
+		        <div>
+		            <h2>Settlements</h2>
+		            <p>See who needs to pay whom</p>
+		        </div>
+
+		    </div>
+
+		    <div id="settlementList" class="settlement-list">
+
+		        <!-- Settlements will come from backend -->
+
+		    </div>
+
+		</section>
+		
+
+
+        <!-- ADD TRIP -->
+
+        <section class="content-section add-trip-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>Add New Trip</h2>
+
+                    <p>
+                        Create a new group trip
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form id="tripForm" class="trip-form">
+
+                <div class="form-group">
+
+                    <label>Trip Name</label>
+
+                    <input
+                        type="text"
+                        id="tripName"
+                        placeholder="Example: Ooty Trip"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Description</label>
+
+                    <input
+                        type="text"
+                        id="tripDescription"
+                        placeholder="Example: College friends trip"
+                        required
+                    >
+
+                </div>
+
+
+                <button type="submit" class="submit-btn">
+                    Create Trip
+                </button>
+
+            </form>
+
+
+            <p id="tripMessage"></p>
+
+        </section>
+		
+		<!-- ADD PARTICIPANT -->
+
+		<section class="content-section" id="participants">
+
+		    <div class="section-header">
+
+		        <div>
+
+		            <h2>Add Participant</h2>
+
+		            <p>
+		                Add a person to your trip
+		            </p>
+
+		        </div>
+
+		    </div>
+
+
+		    <form id="participantForm" class="trip-form">
+
+		        <div class="form-group">
+
+		            <label>Trip ID</label>
+
+		            <input
+		                type="number"
+		                id="participantTripId"
+		                placeholder="Example: 1"
+		                required
+		            >
+
+		        </div>
+
+
+		        <div class="form-group">
+
+		            <label>Participant Name</label>
+
+		            <input
+		                type="text"
+		                id="participantName"
+		                placeholder="Example: Hema"
+		                required
+		            >
+
+		        </div>
+
+
+		        <button
+		            type="submit"
+		            class="submit-btn">
+		            Add Participant
+		        </button>
+
+		    </form>
+			
+			<div class="participant-list-section">
+
+			    <h3>Trip Participants</h3>
+
+			    <div id="participantList">
+			        <p>Select a trip to view participants.</p>
+			    </div>
+
+			</div>
+
+		    <p id="participantMessage"></p>
+
+		</section>
+		
+		<!-- ADD EXPENSE -->
+
+		<section class="content-section" id="expenses">
+
+		    <div class="section-header">
+
+		        <div>
+
+		            <h2>Add Expense</h2>
+
+		            <p>
+		                Record a shared trip expense
+		            </p>
+
+		        </div>
+
+		    </div>
+
+
+		    <form id="expenseForm" class="trip-form">
+
+		        <div class="form-group">
+
+		            <label>Trip ID</label>
+
+		            <input
+		                type="number"
+		                id="expenseTripId"
+		                placeholder="Example: 1"
+		                required
+		            >
+
+		        </div>
+
+
+		        <div class="form-group">
+
+		            <label>Expense Description</label>
+
+		            <input
+		                type="text"
+		                id="expenseDescription"
+		                placeholder="Example: Hotel"
+		                required
+		            >
+
+		        </div>
+
+
+		        <div class="form-group">
+
+		            <label>Amount</label>
+
+		            <input
+		                type="number"
+		                id="expenseAmount"
+		                placeholder="Example: 4000"
+		                required
+		            >
+
+		        </div>
+
+
+		        <div class="form-group">
+
+		            <label>Paid By Participant ID</label>
+
+		            <input
+		                type="number"
+		                id="expensePaidBy"
+		                placeholder="Example: 1"
+		                required
+		            >
+
+		        </div>
+
+
+		        <button
+		            type="submit"
+		            class="submit-btn">
+
+		            Add Expense
+
+		        </button>
+
+		    </form>
+
+
+		    <p id="expenseMessage"></p>
+
+		</section>
+		
+		<!-- EXPENSE HISTORY -->
+		<section class="content-section">
+
+		    <div class="section-header">
+		        <div>
+		            <h2>Expense History</h2>
+		            <p>View all expenses for the selected trip</p>
+		        </div>
+		    </div>
+
+		    <div id="expenseHistory">
+		        <p>Please select a trip.</p>
+		    </div>
+
+		</section>
+		
+		
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
